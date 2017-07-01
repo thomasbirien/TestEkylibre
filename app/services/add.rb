@@ -1,7 +1,11 @@
 class Add
-  attr_reader :params, :tanks
+  attr_accessor :params, :tanks
 
   def initialize(params)
     @params = params
   end
+
+
+
+
 end

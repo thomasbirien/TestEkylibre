@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  post 'interventions/add'
+
+  post 'interventions/remove'
+
+  post 'interventions/traitement'
+
+  post 'interventions/transfert'
+
   root to: 'tanks#index'
 
   resources :tanks do
