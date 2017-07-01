@@ -21,7 +21,12 @@ class TanksController < ApplicationController
   end
 
   def edit
-    @tank = Tank.find(params[:id])
+    if params[:format] == nil
+      @tank = Tank.find(params[:id])
+    else
+      @tank = Tank.find(params[:id])
+      update_quantity
+    end
   end
 
   def update
@@ -33,17 +38,17 @@ class TanksController < ApplicationController
     end
   end
 
+  def update_quantity
+    new_info = Hash.new
+    new_info[:quantity] = params[:format].to_i
+    @tank.update(new_info)
+    redirect_to tank_path(@tank)
+  end
+
   def destroy
     @tank = Tank.find(params[:id])
     @tank.destroy
     redirect_to tank_path
-  end
-
-  def new_quantity
-    @tank = Tank.find(params[:id])
-    new_info = Hash.new
-    raise
-    new_info[:quantity] = params[:format].to_i
   end
 
   private
