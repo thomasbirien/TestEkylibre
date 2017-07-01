@@ -1,2 +1,12 @@
-<h1>Tanks#show</h1>
-<p>Find me in app/views/tanks/show.html.erb</p>
+<div class="container">
+  <div class="card">
+  <h5><%=  @tank.tank_name %></h5>
+   <p>Quantité actuelle : <%= @tank.quantity %>L</p>
+   <p>Quantité max de cette cuve : <%= @tank.quantity_max %>L</p>
+  </div>
+  <div class="card">
+    <%= render 'shared/add_or_remove' %>
+    <%= render 'shared/traitement' %>
+    <%= render 'shared/transfert' %>
+  </div>
+</div>

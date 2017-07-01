@@ -39,6 +39,13 @@ class TanksController < ApplicationController
     redirect_to tank_path
   end
 
+  def new_quantity
+    @tank = Tank.find(params[:id])
+    new_info = Hash.new
+    raise
+    new_info[:quantity] = params[:format].to_i
+  end
+
   private
   def tank_params
     params.require(:tank).permit(
