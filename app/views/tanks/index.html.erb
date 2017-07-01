@@ -1,2 +1,13 @@
-<h1>Tanks#index</h1>
-<p>Find me in app/views/tanks/index.html.erb</p>
+<div class="container">
+  <div class="card">
+    <% @tanks.each do |tank| %>
+      <%= tank.tank_name %>
+      <%= tank.quantity %>
+      <%= tank.quantity_max %>
+      <%= link_to "intervention", tank_path(tank)  %>
+    <% end %>
+  </div>
+  <div class="card">
+    <%= link_to "ajouter une cuve", new_tank_path  %>
+  </div>
+</div>

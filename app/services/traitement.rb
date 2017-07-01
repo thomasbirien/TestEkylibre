@@ -1,0 +1,2 @@
+class Traitement
+end
