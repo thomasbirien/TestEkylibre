@@ -6,6 +6,8 @@ class TanksController < ApplicationController
   def show
     @tank = Tank.find(params[:id])
     @tanks = Tank.all.where.not(id: params[:id])
+    @tank_name_array = []
+    @tanks.each {|tank| @tank_name_array << tank.tank_name}
   end
 
   def new

@@ -28,7 +28,7 @@ class InterventionsController < ApplicationController
   end
 
   def transfert
-
+    raise
   end
 
 end
