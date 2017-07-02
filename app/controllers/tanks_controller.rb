@@ -26,6 +26,10 @@ class TanksController < ApplicationController
   def edit
     if params[:format] == nil
       @tank = Tank.find(params[:id])
+    elsif params[:format].split('/').count == 2
+      @tank = Tank.find(params[:id].split('/').first)
+      @tank_target = Tank.find(params[:id].split('/').last)
+      update_quantity_both
     else
       @tank = Tank.find(params[:id])
       update_quantity
@@ -47,6 +51,19 @@ class TanksController < ApplicationController
     @tank.update(new_info)
     #redirect to action create of ActivitiesController
     redirect_to tank_path(@tank)
+  end
+
+  def update_quantity_both
+    new_info_tank = Hash.new
+    new_info_tank[:quantity] = params[:format].split('/').first.to_i
+
+    new_info_tank_target = Hash.new
+    new_info_tank_target[:quantity] = params[:format].split('/').last.to_i
+
+    @tank.update(new_info_tank)
+    @tank_target.update(new_info_tank_target)
+    redirect_to tanks_path
+
   end
 
   def destroy
