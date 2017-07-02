@@ -4,6 +4,9 @@
    <p>Quantité actuelle : <%= @tank.quantity %>L</p>
    <p>Quantité max de cette cuve : <%= @tank.quantity_max %>L</p>
   </div>
+  <% @tanks.each do |tank| %>
+  <%= tank.tank_name %>
+  <% end %>
   <div class="card">
     <%= render 'shared/add' %>
     <%= render 'shared/remove' %>

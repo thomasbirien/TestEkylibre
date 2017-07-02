@@ -28,9 +28,7 @@ class InterventionsController < ApplicationController
   end
 
   def transfert
-    #check the value
-    Remove.new(params)
-    Add.new(params)
+
   end
 
 end

@@ -5,6 +5,7 @@ class TanksController < ApplicationController
 
   def show
     @tank = Tank.find(params[:id])
+    @tanks = Tank.all.where.not(id: params[:id])
   end
 
   def new
