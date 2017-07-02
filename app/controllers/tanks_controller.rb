@@ -1,6 +1,7 @@
 class TanksController < ApplicationController
   def index
     @tanks = Tank.all
+    @tanks = @tanks.order(:id)
   end
 
   def show
