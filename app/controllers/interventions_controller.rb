@@ -1,11 +1,21 @@
 class InterventionsController < ApplicationController
   def add
-    @tank = Tank.find(params[:tank][:id])
-    if checked < @tank.quantity_max
-      redirect_to edit_tank_path(@tank, checked)
+    add = Add.new(params)
+    result = add.added_quantity
+    tank = Tank.find(params[:tank][:id])
+    if result.class == Fixnum
+      redirect_to edit_tank_path(tank, result)
+    else
+      flash[:notice] = "impossible la quantité maximum est dépassée !"
+      redirect_to tank_path(tank)
     end
-
-    Add.new(params)
+    # @tank = Tank.find(params[:tank][:id])
+    # if checked < @tank.quantity_max
+    #   redirect_to edit_tank_path(@tank, checked)
+    # else
+    #   flash[:notice] = "impossible la quantité maximum est dépassée !"
+    #   redirect_to tank_path(@tank)
+    # end
   end
 
   def remove
@@ -20,11 +30,6 @@ class InterventionsController < ApplicationController
     #check the value
     Remove.new(params)
     Add.new(params)
-  end
-
-  private
-  def checked
-   quantity_check = @tank.quantity + params[:tank][:quantity].to_i
   end
 
 end
