@@ -42,6 +42,7 @@ class TanksController < ApplicationController
     new_info = Hash.new
     new_info[:quantity] = params[:format].to_i
     @tank.update(new_info)
+    #redirect to action create of ActivitiesController
     redirect_to tank_path(@tank)
   end
 
