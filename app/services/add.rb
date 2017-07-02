@@ -3,10 +3,10 @@ class Add
 
   def initialize(params)
     @params = params
+    @tank = Tank.find(@params[:tank][:id])
   end
 
   def added_quantity
-    @tank = Tank.find(@params[:tank][:id])
     if checked <= @tank.quantity_max
       checked
     else

@@ -1,0 +1,11 @@
+<h3>Enlever une quantité de vin ?</h3>
+<% if flash[:notice] == "impossible d'enlevé en dessous de 0L" %>
+  <p>Désolé il est impossible d'enlever du vide...</p>
+<% else %>
+  <p>Faite votre choix (en L)</p>
+<% end %>
+<%= form_for @tank, url: interventions_remove_path, html: {method: :post} do |f| %>
+  <%= f.text_field :quantity_change %>
+  <%= f.hidden_field :id %>
+  <%= f.submit "test", id: params[:id]%>
+<% end %>
