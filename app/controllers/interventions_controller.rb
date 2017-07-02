@@ -28,7 +28,17 @@ class InterventionsController < ApplicationController
   end
 
   def transfert
+    transfert = Transfert.new(params)
+    result = transfert.transfert
+    tank = Tank.find(params[:tank][:id])
+    tank_target_active_record = Tank.where("tank_name = ?", params[:tank][:tank_name])
+    tank_target_array = Tank.find(tank_target_active_record.ids)
+    tank_target = tank_target_array[0]
 
+    array_result = []
+    array_result << tank
+    array_result << tank_target
+
+    redirect_to edit_tank_path(array_result, result)
   end
-
 end

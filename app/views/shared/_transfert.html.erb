@@ -4,9 +4,10 @@
 <% else %>
   <p>Faite votre choix (en L)</p>
 <% end %>
-<%= form_for @tank, url: interventions_remove_path, html: {method: :post} do |f| %>
-  <%= f.text_field :quantity_change %>
-  <%= f.collection @tanks%>
-  <%= f.hidden_field :id %>
-  <%= f.submit "test", id: params[:id]%>
+
+<%= simple_form_for @tank, url: interventions_transfert_path, method: :post do |f| %>
+  <%= f.input :quantity_change %>
+  <%= f.input :tank_name, collection: @tank_name_array %>
+  <%= f.hidden_field :id, value: @tank.id %>
+  <%= f.button :submit %>
 <% end %>
