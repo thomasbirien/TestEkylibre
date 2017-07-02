@@ -1,8 +1,0 @@
-<h6>
-  Ajouter une supprimer une quantité de vin ?
-</h6>
-<%= form_for @tank, url: interventions_add_path, html: {method: :post} do |f| %>
-  <%= f.text_field :quantity %>
-  <%= f.hidden_field :id %>
-  <%= f.submit "test", id: params[:id]%>
-  <% end %>
