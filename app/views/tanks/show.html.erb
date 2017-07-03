@@ -13,4 +13,11 @@
     <%= render 'shared/traitement' %>
     <%= render 'shared/transfert' %>
   </div>
+  <div class="card">
+  <% @activities.each do |activity| %>
+    <%= activity.intervention  %>
+    <%= activity.old_quantity %>
+    <%= activity.new_quantity %>
+  <% end %>
+  </div>
 </div>

@@ -9,6 +9,8 @@ class TanksController < ApplicationController
     @tanks = Tank.all.where.not(id: params[:id])
     @tank_name_array = []
     @tanks.each {|tank| @tank_name_array << tank.tank_name}
+    @activities = Activity.all
+    @activities = @activities.where("tank_id = ?", @tank.id)
   end
 
   def new

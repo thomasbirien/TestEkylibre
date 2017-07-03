@@ -41,7 +41,7 @@ class ActivitiesController < ApplicationController
     params = activity_params_transfert
     params_tank = {
       tank_id: params[:tank_id],
-      tank_name: params[:tank_name]
+      tank_name: params[:tank_name],
       old_quantity: params[:old_quantity_tank].to_i,
       new_quantity: params[:new_quantity_tank].to_i,
       intervention: params[:intervention]
@@ -49,7 +49,7 @@ class ActivitiesController < ApplicationController
 
     params_tank_target = {
       tank_id: params[:tank_target_id],
-      tank_name: params[:tank_target_name]
+      tank_name: params[:tank_target_name],
       old_quantity: params[:old_quantity_tank_target].to_i,
       new_quantity: params[:new_quantity_tank_target].to_i,
       intervention: params[:intervention]

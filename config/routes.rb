@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     get 'activities/resume_add_or_remove'
     get 'activities/resume_transfert'
     post 'activities/create_activity_transfert'
-    resources :activities
+    resources :activities, except: :index
   end
+  resources :activities, only: :index
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
