@@ -1,2 +1,10 @@
-<h1>Activities#index</h1>
-<p>Find me in app/views/activities/index.html.erb</p>
+<div class="container">
+  <div class="card">
+    <% @activities.each do |activity| %>
+    <%= activity.tank_name %>
+    <%= activity.intervention %>
+    <%= activity.old_quantity %>
+    <%= activity.new_quantity %>
+    <% end %>
+  </div>
+</div>

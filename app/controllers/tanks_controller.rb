@@ -9,6 +9,8 @@ class TanksController < ApplicationController
     @tanks = Tank.all.where.not(id: params[:id])
     @tank_name_array = []
     @tanks.each {|tank| @tank_name_array << tank.tank_name}
+    @activities = Activity.all
+    @activities = @activities.where("tank_id = ?", @tank.id)
   end
 
   def new
@@ -47,23 +49,44 @@ class TanksController < ApplicationController
   end
 
   def update_quantity
+    old_info = Hash.new
+    old_info[:quantity] = @tank.quantity
     new_info = Hash.new
     new_info[:quantity] = params[:format].to_i
-    @tank.update(new_info)
+    if old_info[:quantity] > new_info[:quantity]
+      @tank.update(new_info)
+      redirect_to tank_activities_resume_add_or_remove_path(@tank, "soustraction de vin", old_info)
+    else
+      @tank.update(new_info)
+      redirect_to tank_activities_resume_add_or_remove_path(@tank, "ajout de vin", old_info)
+    end
+
+    # @tank.update(new_info)
     #redirect to action create of ActivitiesController
-    redirect_to tank_path(@tank)
+    # redirect_to tank_path(@tank)
   end
 
   def update_quantity_both
+    old_info_tank = Hash.new
+    old_info_tank[:quantity] = @tank.quantity
     new_info_tank = Hash.new
     new_info_tank[:quantity] = params[:format].split('/').first.to_i
 
+    old_info_tank_target = Hash.new
+    old_info_tank_target[:quantity] = @tank_target.quantity
     new_info_tank_target = Hash.new
     new_info_tank_target[:quantity] = params[:format].split('/').last.to_i
 
     @tank.update(new_info_tank)
     @tank_target.update(new_info_tank_target)
-    redirect_to tanks_path
+
+    redirect_to tank_activities_resume_transfert_path(
+      @tank,
+      tank_target_id: @tank_target,
+      intervention: "transfert de vin",
+      old_info_tank_target: old_info_tank_target,
+      old_info_tank: old_info_tank
+      )
 
   end
 
