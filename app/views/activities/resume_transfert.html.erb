@@ -1,26 +1,32 @@
 <div class="container">
-  <p>la Cuve :</p>
-  <p><%= @tank.tank_name %></p>
-  <p>à subit l'intervention suivante : <%= @intervention %></p>
-  <p> vers la cuve : <%= @tank_target.tank_name %></p>
-  <p>donc l'ancienne quantité était de : <%= @old_info_tank %></p>
-  <p>la nouvelle est donc de : <%= @tank.quantity %></p>
-  <p>voici la proportion actuelle : <%= @tank.quantity %>L / <%= @tank.quantity_max %>L</p>
-  <p>donc l'ancienne quantité de la cuve visée était de : <%= @old_info_tank_target %></p>
-  <p>la nouvelle est donc de : <%= @tank_target.quantity %></p>
-  <p>voici la proportion actuelle : <%= @tank_target.quantity %>L / <%= @tank_target.quantity_max %>L</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-5 col-sm-offset-3">
+      <div class="card_activities_resume">
+        <h5>Voici ce que vous venez de faire pour la Cuve : <%= @tank.tank_name %></h5>
+        <p>à subit l'intervention suivante : <%= @intervention %></p>
+        <p> vers la cuve : <%= @tank_target.tank_name %></p>
+        <p>donc l'ancienne quantité de la cuve <%= @tank.tank_name %> était de : <%= @old_info_tank %></p>
+        <p>la nouvelle est donc de : <%= @tank.quantity %></p>
+        <p>voici la proportion actuelle : <%= @tank.quantity %>L / <%= @tank.quantity_max %>L</p>
+        <p>pour la cuve :<%= @tank_target.tank_name %></p>
+        <p>l'ancienne quantité de la cuve visée était de : <%= @old_info_tank_target %></p>
+        <p>la nouvelle est donc de : <%= @tank_target.quantity %></p>
+        <p>voici la proportion actuelle : <%= @tank_target.quantity %>L / <%= @tank_target.quantity_max %>L</p>
 
-  <%= simple_form_for (@activity), url: tank_activities_create_activity_transfert_path , method: :post do |f| %>
-  <%= f.error_notification %>
-  <%= f.hidden_field :intervention, value: @intervention %>
-  <%= f.hidden_field :old_quantity_tank, value: @old_info_tank.to_i %>
-  <%= f.hidden_field :new_quantity_tank, value: @tank.quantity.to_i %>
-  <%= f.hidden_field :tank_name, value: @tank.tank_name %>
-  <%= f.hidden_field :tank_id, value: @tank.id %>
-  <%= f.hidden_field :old_quantity_tank_target, value: @old_info_tank_target.to_i %>
-  <%= f.hidden_field :new_quantity_tank_target, value: @tank_target.quantity.to_i %>
-  <%= f.hidden_field :tank_target_name, value: @tank_target.tank_name %>
-  <%= f.hidden_field :tank_target_id, value: @tank_target.id %>
-  <%= f.submit%>
-  <% end %>
+        <%= simple_form_for (@activity), url: tank_activities_create_activity_transfert_path , method: :post do |f| %>
+        <%= f.error_notification %>
+        <%= f.hidden_field :intervention, value: @intervention %>
+        <%= f.hidden_field :old_quantity_tank, value: @old_info_tank.to_i %>
+        <%= f.hidden_field :new_quantity_tank, value: @tank.quantity.to_i %>
+        <%= f.hidden_field :tank_name, value: @tank.tank_name %>
+        <%= f.hidden_field :tank_id, value: @tank.id %>
+        <%= f.hidden_field :old_quantity_tank_target, value: @old_info_tank_target.to_i %>
+        <%= f.hidden_field :new_quantity_tank_target, value: @tank_target.quantity.to_i %>
+        <%= f.hidden_field :tank_target_name, value: @tank_target.tank_name %>
+        <%= f.hidden_field :tank_target_id, value: @tank_target.id %>
+        <%= f.submit "accueil", class: "btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
