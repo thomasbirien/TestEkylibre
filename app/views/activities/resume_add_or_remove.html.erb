@@ -10,6 +10,7 @@
   <%= f.hidden_field :intervention, value: @intervention %>
   <%= f.hidden_field :old_quantity, value: @old_info.to_i %>
   <%= f.hidden_field :new_quantity, value: @tank.quantity.to_i %>
+  <%= f.hidden_field :tank_name, value: @tank.tank_name %>
   <%= f.hidden_field :tank_id, value: @tank.id %>
   <%= f.submit%>
   <% end %>

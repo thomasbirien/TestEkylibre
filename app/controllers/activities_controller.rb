@@ -41,6 +41,7 @@ class ActivitiesController < ApplicationController
     params = activity_params_transfert
     params_tank = {
       tank_id: params[:tank_id],
+      tank_name: params[:tank_name]
       old_quantity: params[:old_quantity_tank].to_i,
       new_quantity: params[:new_quantity_tank].to_i,
       intervention: params[:intervention]
@@ -48,6 +49,7 @@ class ActivitiesController < ApplicationController
 
     params_tank_target = {
       tank_id: params[:tank_target_id],
+      tank_name: params[:tank_target_name]
       old_quantity: params[:old_quantity_tank_target].to_i,
       new_quantity: params[:new_quantity_tank_target].to_i,
       intervention: params[:intervention]
@@ -87,6 +89,7 @@ class ActivitiesController < ApplicationController
       :old_quantity,
       :intervention,
       :new_quantity,
+      :tank_name
       )
   end
   def activity_params_transfert
@@ -94,10 +97,12 @@ class ActivitiesController < ApplicationController
       .require(:activity)
       .permit(
         :tank_id,
+        :tank_name,
         :old_quantity_tank,
         :new_quantity_tank,
         :intervention,
         :tank_target_id,
+        :tank_target_name,
         :old_quantity_tank_target,
         :new_quantity_tank_target
       )

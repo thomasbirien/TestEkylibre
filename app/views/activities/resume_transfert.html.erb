@@ -15,9 +15,11 @@
   <%= f.hidden_field :intervention, value: @intervention %>
   <%= f.hidden_field :old_quantity_tank, value: @old_info_tank.to_i %>
   <%= f.hidden_field :new_quantity_tank, value: @tank.quantity.to_i %>
+  <%= f.hidden_field :tank_name, value: @tank.tank_name %>
   <%= f.hidden_field :tank_id, value: @tank.id %>
   <%= f.hidden_field :old_quantity_tank_target, value: @old_info_tank_target.to_i %>
   <%= f.hidden_field :new_quantity_tank_target, value: @tank_target.quantity.to_i %>
+  <%= f.hidden_field :tank_target_name, value: @tank_target.tank_name %>
   <%= f.hidden_field :tank_target_id, value: @tank_target.id %>
   <%= f.submit%>
   <% end %>
