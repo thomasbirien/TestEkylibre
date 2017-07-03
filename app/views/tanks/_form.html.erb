@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="card">
+    <%= simple_form_for @tank do |f| %>
+    <%= f.input :tank_name %>
+    <%= f.input :quantity %>
+    <%= f.input :quantity_max %>
+    <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>

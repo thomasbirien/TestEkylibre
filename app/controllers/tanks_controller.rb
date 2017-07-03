@@ -20,7 +20,7 @@ class TanksController < ApplicationController
   def create
     @tank = Tank.new(tank_params)
     if @tank.save
-      redirect_to tank_path
+      redirect_to tanks_path
     else
       render :new
     end
@@ -42,7 +42,7 @@ class TanksController < ApplicationController
   def update
     @tank = Tank.find(params[:id])
     if @tank.update(tank_params)
-      redirect_to tank_path
+      redirect_to tanks_path
     else
       render :edit
     end
@@ -93,7 +93,7 @@ class TanksController < ApplicationController
   def destroy
     @tank = Tank.find(params[:id])
     @tank.destroy
-    redirect_to tank_path
+    redirect_to tanks_path
   end
 
   private

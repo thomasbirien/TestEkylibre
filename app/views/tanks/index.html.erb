@@ -5,6 +5,8 @@
       <%= tank.quantity %>
       <%= tank.quantity_max %>
       <%= link_to "intervention", tank_path(tank)  %>
+      <%= link_to "modifier", edit_tank_path(tank)  %>
+      <%= link_to "supprimer cette cuve", tank_path(tank), method: :delete, data: {confirm: "Voulez-vous supprimer cette cuve ?"}  %>
     <% end %>
   </div>
   <div class="card">
@@ -14,3 +16,4 @@
     <%= link_to "voire toutes les activités", activities_path %>
   </div>
 </div>
+
