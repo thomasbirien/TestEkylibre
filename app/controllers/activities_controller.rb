@@ -33,7 +33,7 @@ class ActivitiesController < ApplicationController
     if @activity.save
       redirect_to tanks_path
     else
-      render "activities#resume"
+      render "activities#resume_add_or_remove"
     end
   end
 
@@ -52,9 +52,13 @@ class ActivitiesController < ApplicationController
       new_quantity: params[:new_quantity_tank_target].to_i,
       intervention: params[:intervention]
     }
-
-
-    raise
+    @activity_tank = Activity.new(params_tank)
+    @activity_tank_target = Activity.new(params_tank_target)
+    if @activity_tank.save && @activity_tank_target.save
+      redirect_to tanks_path
+    else
+      render "activities#resume_transfert"
+    end
   end
 
   def edit
