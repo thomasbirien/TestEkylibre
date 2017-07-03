@@ -47,8 +47,18 @@ class TanksController < ApplicationController
   end
 
   def update_quantity
+    old_info = Hash.new
+    old_info[:quantity] = @tank.quantity
     new_info = Hash.new
     new_info[:quantity] = params[:format].to_i
+    raise
+    if @tank.quantity > new_info[:quantity]
+      @tank.update(new_info)
+      redirect_to tank_activities_path(@tank, "soustraction de vin")
+    else
+      redirect_to tank_activities_path(@tank, "ajout de vin")
+    end
+
     @tank.update(new_info)
     #redirect to action create of ActivitiesController
     redirect_to tank_path(@tank)
