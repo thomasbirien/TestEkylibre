@@ -8,7 +8,7 @@
 <% end %>
 
 <%= simple_form_for @tank, url: interventions_add_path, method: :post do |f| %>
-  <%= f.input :quantity_change %>
+  <%= f.input :quantity_change, label: "quantité à ajouter " %>
   <%= f.hidden_field :id, value: @tank.id %>
-  <%= f.button :submit %>
+  <%= f.submit "ajout", class: "btn btn-primary"%>
 <% end %>

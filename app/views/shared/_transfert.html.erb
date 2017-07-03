@@ -6,8 +6,8 @@
 <% end %>
 
 <%= simple_form_for @tank, url: interventions_transfert_path, method: :post do |f| %>
-  <%= f.input :quantity_change %>
-  <%= f.input :tank_name, collection: @tank_name_array %>
+  <%= f.input :quantity_change, label: "quantité à transférer" %>
+  <%= f.input :tank_name, collection: @tank_name_array, label: "quantité transférer à la cuve :" %>
   <%= f.hidden_field :id, value: @tank.id %>
-  <%= f.button :submit %>
+  <%= f.submit "transférer", class: "btn btn-primary" %>
 <% end %>

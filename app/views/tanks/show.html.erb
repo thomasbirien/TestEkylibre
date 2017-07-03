@@ -1,23 +1,30 @@
 <div class="container">
-  <div class="card">
-  <h2><%=  @tank.tank_name %></h2>
-   <p>Quantité actuelle : <%= @tank.quantity %>L</p>
-   <p>Quantité max de cette cuve : <%= @tank.quantity_max %>L</p>
-  </div>
-  <% @tanks.each do |tank| %>
-  <%= tank.tank_name %>
-  <% end %>
-  <div class="card">
-    <%= render 'shared/add' %>
-    <%= render 'shared/remove' %>
-    <%= render 'shared/traitement' %>
-    <%= render 'shared/transfert' %>
-  </div>
-  <div class="card">
-  <% @activities.each do |activity| %>
-    <%= activity.intervention  %>
-    <%= activity.old_quantity %>
-    <%= activity.new_quantity %>
-  <% end %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-5">
+      <div class="card_tank_show">
+        <h2><%=  @tank.tank_name %></h2>
+         <p>Quantité actuelle : <%= @tank.quantity %>L</p>
+         <p>Quantité max de cette cuve : <%= @tank.quantity_max %>L</p>
+        <div class="card">
+          <%= render 'shared/add' %>
+          <%= render 'shared/remove' %>
+          <%= render 'shared/traitement' %>
+          <%= render 'shared/transfert' %>
+        </div>
+      </div>
+    </div>
+    <div class="card_title">
+      <h5>Voici les activités de la cuve : <%= @tank.tank_name %></h5>
+      <% @activities.each do |activity| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card_activities_tank">
+            <p>à subit l'intervention : <%= activity.intervention %></p>
+            <p>l'ancienne quantité était de : <%= activity.old_quantity %>L</p>
+            <p>la nouvelle quantité est de : <%= activity.new_quantity %>L</p>
+            <p>pour la date du : <%= activity.created_at.strftime("%d/%m/%Y") %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
