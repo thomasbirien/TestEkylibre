@@ -5,8 +5,8 @@
   <p>Faite votre choix (en L)</p>
 <% end %>
 <%= simple_form_for @tank, url: interventions_remove_path, method: :post do |f| %>
-  <%= f.input :quantity_change %>
+  <%= f.input :quantity_change, label: "quantité à enlever" %>
   <%= f.hidden_field :id, value: @tank.id %>
-  <%= f.button :submit %>
+  <%= f.submit "enlever", class: "btn btn-primary" %>
 <% end %>
 

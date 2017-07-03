@@ -1,10 +1,24 @@
 <div class="container">
-  <div class="card">
+  <div class="row">
     <% @activities.each do |activity| %>
-    <%= activity.tank_name %>
-    <%= activity.intervention %>
-    <%= activity.old_quantity %>
-    <%= activity.new_quantity %>
+      <div class="col-xs-12 col-sm-3">
+        <div class="card_activities_index">
+          <%= activity.tank_name %>
+          <%= activity.intervention %>
+          <%= activity.old_quantity %>
+          <%= activity.new_quantity %>
+          <%= link_to "supprimer", activity_path(activity), method: :delete, data: {confirm: "Voulez-vous supprimer cette intervention, attention la ou les cuves ne retourneront pas à l'état initial !"}  %>
+        </div>
+      </div>
     <% end %>
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-3 col-sm-2 col-sm-offset-5">
+      <div class="card_button">
+        <button type="button" class="btn btn-block btn-primary">
+          <%= link_to "retour", tanks_path %>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
