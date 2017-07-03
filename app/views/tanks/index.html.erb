@@ -1,19 +1,34 @@
 <div class="container">
   <div class="card">
-    <% @tanks.each do |tank| %>
-      <%= tank.tank_name %>
-      <%= tank.quantity %>
-      <%= tank.quantity_max %>
-      <%= link_to "intervention", tank_path(tank)  %>
-      <%= link_to "modifier", edit_tank_path(tank)  %>
-      <%= link_to "supprimer cette cuve", tank_path(tank), method: :delete, data: {confirm: "Voulez-vous supprimer cette cuve ?"}  %>
-    <% end %>
+    <div class="row">
+
+      <% @tanks.each do |tank| %>
+        <div class="col-xs-3">
+          <div class="card_tank_index">
+            <p>Cuve : <%= tank.tank_name %></p>
+            <p>Elle contient actuellement : <%= tank.quantity %>L</p>
+            <p>Elle ne peut dépasser : <%= tank.quantity_max %>L</p>
+            <%= link_to "intervention", tank_path(tank)  %>
+            <%= link_to "modifier", edit_tank_path(tank)  %>
+            <%= link_to "supprimer", tank_path(tank), method: :delete, data: {confirm: "Voulez-vous supprimer cette cuve ?"}  %>
+          </div>
+        </div>
+      <% end %>
+
+
+    </div>
   </div>
-  <div class="card">
-    <%= link_to "ajouter une cuve", new_tank_path  %>
-  </div>
-  <div class="card">
-    <%= link_to "voire toutes les activités", activities_path %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-3">
+      <div class="card_tank_index">
+      <div class="spacing">
+        <%= link_to "ajouter une cuve", new_tank_path  %>
+      </div>
+      <div class="spacing">
+        <%= link_to "voire toutes les activités", activities_path %>
+      </div>
+      </div>
+    </div>
   </div>
 </div>
 
