@@ -11,11 +11,21 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
   end
 
-  def resume
+  def resume_add_or_remove
     @activity = Activity.new
     @tank = Tank.find(params[:tank_id])
     @old_info = params[:quantity]
     @intervention = params[:format]
+  end
+
+  def resume_transfert
+    @activity = Activity.new
+    @tank = Tank.find(params[:tank_id])
+    @tank_target = Tank.find(params[:tank_target_id])
+    @intervention = params[:intervention]
+    @old_info_tank = params[:old_info_tank][:quantity]
+    @old_info_tank_target = params[:old_info_tank_target][:quantity]
+
   end
 
   def create
@@ -23,8 +33,28 @@ class ActivitiesController < ApplicationController
     if @activity.save
       redirect_to tanks_path
     else
-      raise
+      render "activities#resume"
     end
+  end
+
+  def create_activity_transfert
+    params = activity_params_transfert
+    params_tank = {
+      tank_id: params[:tank_id],
+      old_quantity: params[:old_quantity_tank].to_i,
+      new_quantity: params[:new_quantity_tank].to_i,
+      intervention: params[:intervention]
+    }
+
+    params_tank_target = {
+      tank_id: params[:tank_target_id],
+      old_quantity: params[:old_quantity_tank_target].to_i,
+      new_quantity: params[:new_quantity_tank_target].to_i,
+      intervention: params[:intervention]
+    }
+
+
+    raise
   end
 
   def edit
@@ -49,12 +79,26 @@ class ActivitiesController < ApplicationController
   private
   def activity_params
     params.require(:activity).permit(
-      :tank_name,
+      :tank_id,
       :old_quantity,
       :intervention,
       :new_quantity,
-      :quantity,
-      :quantity_max
       )
   end
+  def activity_params_transfert
+    params
+      .require(:activity)
+      .permit(
+        :tank_id,
+        :old_quantity_tank,
+        :new_quantity_tank,
+        :intervention,
+        :tank_target_id,
+        :old_quantity_tank_target,
+        :new_quantity_tank_target
+      )
+  end
+
 end
+
+

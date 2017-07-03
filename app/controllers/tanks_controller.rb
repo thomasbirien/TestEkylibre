@@ -53,10 +53,10 @@ class TanksController < ApplicationController
     new_info[:quantity] = params[:format].to_i
     if old_info[:quantity] > new_info[:quantity]
       @tank.update(new_info)
-      redirect_to tank_activities_resume_path(@tank, "soustraction de vin", old_info)
+      redirect_to tank_activities_resume_add_or_remove_path(@tank, "soustraction de vin", old_info)
     else
       @tank.update(new_info)
-      redirect_to tank_activities_resume_path(@tank, "ajout de vin")
+      redirect_to tank_activities_resume_add_or_remove_path(@tank, "ajout de vin", old_info)
     end
 
     # @tank.update(new_info)
@@ -65,15 +65,26 @@ class TanksController < ApplicationController
   end
 
   def update_quantity_both
+    old_info_tank = Hash.new
+    old_info_tank[:quantity] = @tank.quantity
     new_info_tank = Hash.new
     new_info_tank[:quantity] = params[:format].split('/').first.to_i
 
+    old_info_tank_target = Hash.new
+    old_info_tank_target[:quantity] = @tank_target.quantity
     new_info_tank_target = Hash.new
     new_info_tank_target[:quantity] = params[:format].split('/').last.to_i
 
     @tank.update(new_info_tank)
     @tank_target.update(new_info_tank_target)
-    redirect_to tanks_path
+
+    redirect_to tank_activities_resume_transfert_path(
+      @tank,
+      tank_target_id: @tank_target,
+      intervention: "transfert de vin",
+      old_info_tank_target: old_info_tank_target,
+      old_info_tank: old_info_tank
+      )
 
   end
 

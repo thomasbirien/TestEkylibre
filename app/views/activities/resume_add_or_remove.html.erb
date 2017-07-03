@@ -8,11 +8,9 @@
   <%= simple_form_for (@activity), url: tank_activities_path, method: :post do |f| %>
   <%= f.error_notification %>
   <%= f.hidden_field :intervention, value: @intervention %>
-  <%= f.hidden_field :old_info, value: @old_info %>
-  <%= f.hidden_field :new_quantity, value: @tank.quantity %>
+  <%= f.hidden_field :old_quantity, value: @old_info.to_i %>
+  <%= f.hidden_field :new_quantity, value: @tank.quantity.to_i %>
   <%= f.hidden_field :tank_id, value: @tank.id %>
-  <%= f.hidden_field :tank_name, value: @tank.tank_name %>
-  <%= f.hidden_field :quantity_max, value: @tank.quantity_max%>
   <%= f.submit%>
   <% end %>
 </div>
