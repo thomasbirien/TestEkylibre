@@ -11,12 +11,19 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
   end
 
+  def resume
+    @activity = Activity.new
+    @tank = Tank.find(params[:tank_id])
+    @old_info = params[:quantity]
+    @intervention = params[:format]
+  end
+
   def create
     @activity = Activity.new(activity_params)
     if @activity.save
-      redirect_to activity_path
+      redirect_to tanks_path
     else
-      render :new
+      raise
     end
   end
 
@@ -43,6 +50,9 @@ class ActivitiesController < ApplicationController
   def activity_params
     params.require(:activity).permit(
       :tank_name,
+      :old_quantity,
+      :intervention,
+      :new_quantity,
       :quantity,
       :quantity_max
       )
